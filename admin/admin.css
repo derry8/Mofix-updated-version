@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Inter", sans-serif;
+}
+body {
+   background: #081b29;
+}
+
+
+
+.sidebar {
+   position: fixed;
+   width: 80px;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.822);
+   z-index: 100000;
+   transition: 0.5s;
+   padding-left: 10px;
+   overflow: hidden;
+}
+
+.sidebar.active {
+   width: 300px;
+}
+
+.sidebar ul {
+   position: relative;
+   height: 100vh;
+}
+
+.sidebar ul li {
+   position: relative;
+   list-style: none;
+   top: 140px;
+}
+
+.sidebar ul li.active {
+   background: #081b29;
+   border-top-left-radius: 50px;
+   border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before {
+   content: "";
+   position: absolute;
+   top: -20px;
+   right: 0;
+   width: 20px;
+   height: 20px;
+   border-bottom-right-radius: 20px;
+   box-shadow: 5px 5px 0 5px #081b29;
+   background: transparent;
+}
+
+.sidebar ul li.active::after {
+   content: "";
+   position: absolute;
+   bottom: -20px;
+   right: 0;
+   width: 20px;
+   height: 20px;
+   border-top-right-radius: 20px;
+   box-shadow: 5px -5px 0 5px #081b29;
+   background: transparent;
+}
+
+.sidebar ul li.logo {
+   margin-bottom: 50px;
+}
+
+.sidebar ul li.logo .icon {
+   font-size: 2em;
+   color: var(--clr);
+}
+
+.sidebar ul li.logo .text {
+   font-size: 1.2em;
+   font-weight: 500;
+   color: var(--clr);
+}
+
+.sidebar ul li a {
+   position: relative;
+   display: flex;
+   white-space: nowrap;
+   text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-width: 60px;
+   padding-left: 10px;
+   height: 70px;
+   font-size: 1.5em;
+   color: black;
+   transition: 0.5s;
+}
+.sidebar ul li.active a .icon {
+   color: black;
+}
+.sidebar ul li.active a .icon::before {
+   content: "";
+   position: absolute;
+   inset: 5px;
+   width: 60px;
+   background: var(--bg);
+   border-radius: 50%;
+   transition: 0.5s;
+   color: black;
+}
+
+.sidebar ul li:hover.active a .icon::before {
+   background: #0ef;
+}
+.right-panel{
+   width: 300px;
+   height: 100%;
+   position: fixed;
+   right: 0px;
+   top: 0px;
+   background-color: rgba(255, 255, 255, 0.822);
+   box-shadow: 0 0 1rem lightblue;
+}
+.admin{
+   width: 170px;
+   height: 170px;
+   background-color: transparent;
+   border-radius: 50%;
+   margin-left: 67px;
+   margin-top: 25px;
+   border: 4px solid #0ef;
+   box-shadow: 0 0 1rem ;
+}
+.admin img{
+   height: 100%;
+   width: 100%;
+   object-fit:  cover;
+   border-radius: 50%;
+}
+.admin .ion-icon{
+   color: whi;
+}
+.admin a{
+   color: #081b29;
+   position: fixed;
+   top: 170px;
+   margin-left: -20px;
+   font-size: 20px;
+}
+.welcome h1{
+   font-size: 25px;
+   margin-top: 40px;
+   margin-left: 10px;
+   font-weight: 20px;
+   font-family: fantasy;
+}
+.welcome h2{
+   font-family: cursive;
+   font-size: 15px;
+   margin-left: 23px;
+   margin-top: 5px;
+   color: rgb(0, 191, 255);
+   font-weight: 50px;
+}
+.logout{
+   font-size: 35px;
+   color: black;
+   position: fixed;
+   bottom: 65px;
+   right: 118px;
+   rotate: 180deg;
+}
+.activ{
+   width: 25px;
+   height: 25px;
+   background-color: black;
+   position: fixed;
+   border-radius: 50%;
+   right: 77px;
+   top: 160px;
+   border: 4px solid #0ef;
+}
+.alert{
+   width: 50px;
+   height: 50px;
+   background-color: rgba(255, 255, 255, 0.1);
+   border-radius: 10px;
+   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.274);
+   margin-left: 30px;
+   margin-top: 140px;
+   border: 2px solid black;
+}
+.work{
+   width: 50px;
+   height: 50px;
+   background-color: rgba(255, 255, 255, 0.1);
+   border-radius: 10px;
+   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.274);
+   margin-left: 132.5px;
+   margin-top: -49px;
+   border: 2px solid black;
+}
+.star{
+   width: 50px;
+   height: 50px;
+   background-color: rgba(255, 255, 255, 0.1);
+   border-radius: 10px;
+   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.274);
+   margin-left: 240px;
+   margin-top: -49px;
+   border: 2px solid black;
+}
+.badge{
+   width: 25px;
+   height: 25px;
+   border-radius: 50%;
+   background-color: black;
+   position: fixed;
+   top: 330px;
+   right: 210px;
+   border: 2px solid black;
+}
+.badge p{
+   color: #0ef;
+   font-size: 20px;
+   font-family: cursive;
+   margin-left: 5px;
+   margin-top: -4px;
+}
+.boxes .ion{
+   color: black;
+   font-size: 25px;
+   margin-top: 10px;
+   margin-left: 10px;
+}
+.chart h1{
+   margin-left: 70px;
+   position: fixed;
+   top: 420px;
+   font-size: 30px;
+   font-family: fantasy;
+   color: black;
+}
+.chart-container {
+   width: 300px;
+   height: 300px;
+   margin-top: 100px;
+}
+.top{
+   width: 75.5%;
+   height: 60px;
+   background-color: rgba(255, 255, 255, 0.822);
+   margin-left: 86px;
+   box-shadow: 0 0 1rem lightblue;
+}
+.top h1{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 40px;
+   font-family: monoton;
+}
+.users{
+   width: 350px;
+   height: 200px;
+   background-color: rgba(255, 255, 255, 0.171);
+   position: relative;
+   left: 90px;
+   top: 10px;
+   border-radius: 20px;
+   border: 3px solid #0ef;
+   box-shadow: 0 0 1rem black;
+}
+.revenue{
+   width: 350px;
+   height: 200px;
+   background-color: rgba(255, 255, 255, 0.171);
+   position: relative;
+   left: 450px;
+   top: -188px;
+   border-radius: 20px;
+   border: 3px solid #0ef;
+   box-shadow: 0 0 1rem black;
+}
+.visitors{
+   width: 480px;
+   height: 200px;
+   background-color: rgba(255, 255, 255, 0.171);
+   position: relative;
+   left: 810px;
+   top: -388px;
+   border-radius: 20px;
+   border: 3px solid #0ef;
+   box-shadow: 0 0 1rem black;
+}
+.middle-box{
+   width: 75%;
+   height: 520px;
+   background-color: red;
+   margin-left: 90px;
+   margin-top: -375px;
+   border-radius: 20px;
+   background-color: rgba(255, 255, 255, 0.171);
+   border: 3px solid #0ef;
+}
+
+
+

@@ -1,0 +1,406 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mofix dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="left-panel">
+      
+    <div class="menuToggle" style="display: none;"></div>
+    <div class="sidebar">
+       <ul>  
+          <div class="Menulist">
+             <li style="--bg:#0ef;" class="active">
+                <a href="#home">
+                   <div class="icon">
+                      <ion-icon name="home"></ion-icon>
+                   </div>
+                  
+                </a>
+             </li>
+             <li style="--bg:#0ef;">
+              <a href="#profile">
+                 <div class="icon">
+                    <ion-icon name="calendar"></ion-icon>
+                 </div>
+                
+              </a>
+           </li>
+             <li style="--bg:#0ef;">
+                <a href="#profile">
+                   <div class="icon">
+                      <ion-icon name="wallet"></ion-icon>
+                   </div>
+                  
+                </a>
+             </li>
+             <li style="--bg:#0ef;">
+                <a href="#chatboxes">
+                   <div class="icon">
+                      <ion-icon name="analytics"></ion-icon>
+                   </div>
+                  
+                </a>
+             </li>
+             <li style="--bg:#0ef;">
+                <a href="#analytics">
+                   <div class="icon">
+                      <ion-icon name="person"></ion-icon>
+                   </div>
+                  
+                </a>
+             </li>
+             <li style="--bg:#0ef;">
+                <a href="#settings">
+                   <div class="icon">
+                      <ion-icon name="cloud-upload"></ion-icon>
+                   </div>
+                  
+                </a>
+             </li>
+             <li style="--bg:#0ef;">
+               <a href="#settings">
+                  <div class="icon" style="bottom: -120px;">
+                     <ion-icon name="log-out"></ion-icon>
+                  </div>
+                 
+               </a>
+            </li>
+          </div>
+       </ul>
+    </div>
+
+  </div>
+  <div class="right-panel">
+   <div class="activ"></div>
+       <div class="admin">
+         <img src="images/4kحبيبي.jpg" alt="">
+        
+         <div class="welcome">
+            <h1>Welcome back</h1>
+            <h2>Cyubahiro derrick</h2>
+         </div>
+       </div>
+      <div class="boxes">
+         <div class="alert">
+            <ion-icon name="notifications" class="ion"></ion-icon>
+            <div class="badge"><p>2</p></div>
+         </div>
+         <div class="work">
+            <div class="badge" style="right: 105px;"><p>8</p></div>
+            <ion-icon name="briefcase" class="ion"><ion-icon>
+         </div>
+         <div class="star">
+            <ion-icon name="brush" class="ion"></ion-icon>
+         </div>
+      </div> 
+      <div class="chart">
+         <h1>Work progress</h1>
+         <div class="chart-container">
+            <canvas id="adminWorkRateChart"></canvas>
+          </div>
+      </div>
+            
+  </div>
+  <div class="top">
+   <h1>Admin dashboard</h1>
+  </div>
+  <div class="main">
+   <div class="top-boxes">
+      <div class="users">
+         
+      </div>
+      <div class="revenue"></div>
+      <div class="visitors"></div>
+   </div>
+   <div class="middle-box">
+      <div class="charts-card">
+         <h2 class="chart-title" style="color: white; margin-left: 20px; margin-top: 60px;">Purchase and Sales Orders</h2>
+         <div id="area-chart"></div>
+       </div>
+   </div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+<script src="admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+   let ctx = document.getElementById("adminWorkRateChart").getContext('2d');
+
+// Sample data for admin work rates
+const adminWorkRateData = {
+  labels: ["derrick", "joshua", "sabin", "djabal","tugane"],
+  datasets: [{
+    data: [30, 20, 25, 12.5,12.5], // Replace with actual work rates
+    backgroundColor: ["#ff6c00", "#ff3b74", "#3498db", "#2ecc71","#0ef"],
+  }]
+};
+
+var chart = new Chart(ctx, {
+  type: 'pie',
+  data: adminWorkRateData,
+  options: {
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        fontColor: '#333',
+        fontSize: 12,
+      }
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+            return previousValue + currentValue;
+          });
+          var currentValue = dataset.data[tooltipItem.index];
+          var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+          return data.labels[tooltipItem.index] + ": " + currentValue + " (" + percentage + "%)";
+        }
+      }
+    }
+  }
+});
+
+const barChartOptions = {
+  series: [
+    {
+      data: [10, 8, 6, 4, 2],
+      name: 'Products',
+    },
+  ],
+  chart: {
+    type: 'bar',
+    background: 'transparent',
+    height: 350,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#2962ff', '#d50000', '#2e7d32', '#ff6d00', '#583cb3'],
+  plotOptions: {
+    bar: {
+      distributed: true,
+      borderRadius: 4,
+      horizontal: false,
+      columnWidth: '40%',
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    opacity: 1,
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  stroke: {
+    colors: ['transparent'],
+    show: true,
+    width: 2,
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+  xaxis: {
+    categories: ['Laptop', 'Phone', 'Monitor', 'Headphones', 'Camera'],
+    title: {
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      show: true,
+      color: '#55596e',
+    },
+    axisTicks: {
+      show: true,
+      color: '#55596e',
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'Count',
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+};
+
+const barChart = new ApexCharts(
+  document.querySelector('#bar-chart'),
+  barChartOptions
+);
+barChart.render();
+
+// AREA CHART
+const areaChartOptions = {
+  series: [
+    {
+      name: 'Purchase Orders',
+      data: [31, 40, 28, 51, 42, 109, 100],
+    },
+    {
+      name: 'Sales Orders',
+      data: [11, 32, 45, 32, 34, 52, 41],
+    },
+  ],
+  chart: {
+    type: 'area',
+    background: 'transparent',
+    height: 350,
+    stacked: false,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#00ab57', '#d50000'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    gradient: {
+      opacityFrom: 0.4,
+      opacityTo: 0.1,
+      shadeIntensity: 1,
+      stops: [0, 100],
+      type: 'vertical',
+    },
+    type: 'gradient',
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  markers: {
+    size: 6,
+    strokeColors: '#1b2635',
+    strokeWidth: 3,
+  },
+  stroke: {
+    curve: 'smooth',
+  },
+  xaxis: {
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      offsetY: 5,
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: [
+    {
+      title: {
+        text: 'Purchase Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+    {
+      opposite: true,
+      title: {
+        text: 'Sales Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+  ],
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+};
+
+const areaChart = new ApexCharts(
+  document.querySelector('#area-chart'),
+  areaChartOptions
+);
+areaChart.render();
+
+</script>
+</html>
